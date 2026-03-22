@@ -62,7 +62,7 @@ Accepts 2 or 4 comma-separated positive values (in mm):
 
 Defaults: top=`4.5`, right=`4.5`, bottom=`4.5`, left=`10.0`.
 
-When `--mirror true` is set, the provided margins apply to even-numbered pages. Odd-numbered pages have their left and right margins swapped.
+When `--mirror true` is set, the provided margins apply to odd-numbered pages. Even-numbered pages have their left and right margins swapped.
 
 ### Available page sizes
 

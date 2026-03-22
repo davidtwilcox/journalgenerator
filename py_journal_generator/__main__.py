@@ -184,7 +184,7 @@ def main():
 
     for i in range(args.numpages):
         page_num = i + 1
-        if args.mirror and page_num % 2 == 1:
+        if args.mirror and page_num % 2 == 0:
             top, right, bottom, left = base_margins
             margins = (top, left, bottom, right)
         else:
