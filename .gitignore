@@ -22,6 +22,9 @@ env/
 venv/
 ENV/
 
+# PDF output
+*.pdf
+
 # Claude
 .claude/
 

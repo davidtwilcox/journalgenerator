@@ -11,10 +11,21 @@ pip install -e .
 
 **Run (generates test.pdf):**
 ```bash
-python main.py
+python main.py --type <H|L|D> [--pagesize NAME] [--size FLOAT] [--width FLOAT] [--numpages INT]
 ```
 
-There are no tests, linting, or build steps configured.
+Run without arguments to see the full help message.
+
+**Lint:**
+```bash
+python3 -m ruff check .
+python3 -m ruff check . --fix   # auto-fix
+```
+
+**Test:**
+```bash
+python3 -m pytest -v
+```
 
 ## Architecture
 
@@ -29,10 +40,12 @@ There are no tests, linting, or build steps configured.
 - `hexagon.Hexagon` — geometry utility: computes diagonals, apothem, and 6 vertex coordinates from a side length
 - `pdf.PDF` — thin subclass of `fpdf.FPDF` (no added behavior; exists for future extension)
 
-**Data flow:** `main.py` creates a `PDF`, instantiates page objects (left/right variants via mirrored margin tuples), calls `render(pdf)` on each, then writes `test.pdf`.
+**Data flow:** `main.py` parses CLI args, loads `page_sizes.yaml`, creates a `PDF` sized to the chosen page, renders `--numpages` pages of the chosen type, and writes `test.pdf`.
+
+**`page_sizes.yaml`** — root-level config file listing available page sizes (name, width, height in mm). Loaded at startup; `--pagesize` must match a `name` entry.
 
 **Key conventions:**
 - All measurements are in millimeters
-- Left vs. right page variants are created by swapping the left/right margin values (binding margin is 10mm, others 4.5mm)
+- Margins are `(top, right, bottom, left)` = `(4.5, 4.5, 4.5, 10.0)` — 10mm binding margin on the left
 - Content area origin is margin-offset from the PDF page corner; pages handle their own coordinate math
 - Hexagon grid rows alternate with a half-hex horizontal offset for proper tessellation

@@ -1,0 +1,28 @@
+page_sizes:
+    - name: A4
+      width: 210
+      height: 297
+    - name: A5
+      width: 148
+      height: 210
+    - name: A6
+      width: 105
+      height: 148
+    - name: B4
+      width: 250
+      height: 353
+    - name: B5
+      width: 176
+      height: 250
+    - name: B6
+      width: 125
+      height: 176
+    - name: letter
+      width: 216
+      height: 279
+    - name: halfletter
+      width: 140
+      height: 216
+    - name: legal
+      width: 216
+      height: 356
