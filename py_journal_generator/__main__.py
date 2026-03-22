@@ -47,6 +47,31 @@ def positive_float(value: str) -> float:
     return fvalue
 
 
+def parse_bool(value: str) -> bool:
+    if value.lower() == "true":
+        return True
+    elif value.lower() == "false":
+        return False
+    raise argparse.ArgumentTypeError(f"'{value}' is not a valid boolean. Use 'true' or 'false'.")
+
+
+def parse_margins(value: str) -> tuple:
+    parts = [p.strip() for p in value.split(",")]
+    if len(parts) not in (2, 4):
+        raise argparse.ArgumentTypeError("--margins requires 2 or 4 comma-separated values.")
+    try:
+        floats = [float(p) for p in parts]
+    except ValueError:
+        raise argparse.ArgumentTypeError("All margin values must be valid numbers.")
+    for f in floats:
+        if f <= 0:
+            raise argparse.ArgumentTypeError(f"All margin values must be positive (got {f}).")
+    if len(floats) == 2:
+        top_bottom, left_right = floats
+        return (top_bottom, left_right, top_bottom, left_right)  # top, right, bottom, left
+    return tuple(floats)  # top, right, bottom, left
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Generate journal pages as a PDF.",
@@ -92,6 +117,25 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="FILENAME",
         help="Output PDF filename. Default: journal-YYYYmmddHHMMSS.pdf",
     )
+    parser.add_argument(
+        "--margins",
+        type=parse_margins,
+        default=None,
+        metavar="FLOATS",
+        help=(
+            "Page margins in mm as 2 or 4 comma-separated positive values. "
+            "2 values: top/bottom,left/right. "
+            "4 values: top,right,bottom,left. "
+            "Defaults: top=4.5, right=4.5, bottom=4.5, left=10.0"
+        ),
+    )
+    parser.add_argument(
+        "--mirror",
+        type=parse_bool,
+        default=False,
+        metavar="BOOL",
+        help="Swap left and right margins on odd-numbered pages (true/false). Default: false",
+    )
     return parser
 
 
@@ -132,13 +176,20 @@ def main():
     pdf_w = float(page_entry["width"])
     pdf_h = float(page_entry["height"])
     page_size = (pdf_w, pdf_h)
-    margins = (4.5, 4.5, 4.5, 10.0)
+    base_margins = args.margins if args.margins is not None else (4.5, 4.5, 4.5, 10.0)
 
     pdf = PDF(unit="mm", format=(pdf_w, pdf_h))
     pdf.set_draw_color(63, 63, 63)
     pdf.set_line_width(0.1)
 
-    for _ in range(args.numpages):
+    for i in range(args.numpages):
+        page_num = i + 1
+        if args.mirror and page_num % 2 == 1:
+            top, right, bottom, left = base_margins
+            margins = (top, left, bottom, right)
+        else:
+            margins = base_margins
+
         if page_type == "H":
             page = HexMapJournalPage(page_size, margins, args.size if args.size is not None else 7.5)
         elif page_type == "L":

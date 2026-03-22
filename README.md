@@ -32,6 +32,8 @@ Run without arguments to display this parameter reference.
 | `--width` | No | See below | Width value whose meaning depends on page type. Ignored for `H`. |
 | `--numpages` | No | `1` | Number of pages to generate. Must be a positive integer. |
 | `--output` | No | `journal-YYYYmmddHHMMSS.pdf` | Output filename. `.pdf` extension is added automatically if omitted. |
+| `--margins` | No | See below | Page margins in mm as 2 or 4 comma-separated positive values. |
+| `--mirror` | No | `false` | Swap left and right margins on odd-numbered pages (`true`/`false`). |
 
 ### --size defaults by type
 
@@ -48,6 +50,19 @@ Run without arguments to display this parameter reference.
 | `H` | — | Ignored |
 | `L` | `0.1` | Line width (mm) |
 | `D` | `5.0` | Dot spacing (mm) |
+
+### --margins
+
+Accepts 2 or 4 comma-separated positive values (in mm):
+
+| Format | Values | Description |
+|---|---|---|
+| 2 values | `top/bottom,left/right` | e.g. `5,10` sets top=5, bottom=5, left=10, right=10 |
+| 4 values | `top,right,bottom,left` | e.g. `4.5,4.5,4.5,10` |
+
+Defaults: top=`4.5`, right=`4.5`, bottom=`4.5`, left=`10.0`.
+
+When `--mirror true` is set, the provided margins apply to even-numbered pages. Odd-numbered pages have their left and right margins swapped.
 
 ### Available page sizes
 
@@ -79,4 +94,7 @@ journal-generator --type D --pagesize letter --size 0.3 --width 6
 
 # A5 hex map with larger hexagons
 journal-generator --type H --size 10
+
+# 20-page lined journal with mirrored margins for binding
+journal-generator --type L --numpages 20 --margins "4.5,4.5,4.5,10" --mirror true
 ```
