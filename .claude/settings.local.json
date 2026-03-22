@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(python3 -m pip install pytest -q)",
-      "Bash(python3 -m pytest -v)"
+      "Bash(python3 -m pytest -v)",
+      "Bash(python3 -m pip install ruff -q)",
+      "Bash(python3 -m ruff check .)"
     ]
   }
 }

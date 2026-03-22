@@ -1,7 +1,8 @@
-import pytest
-from unittest.mock import MagicMock, call
-from py_journal_generator.lined_journal_page import LinedJournalPage
+from unittest.mock import MagicMock
 
+import pytest
+
+from py_journal_generator.lined_journal_page import LinedJournalPage
 
 PAGE_SIZE = (148.0, 210.0)
 MARGINS = (4.5, 4.5, 4.5, 10.0)

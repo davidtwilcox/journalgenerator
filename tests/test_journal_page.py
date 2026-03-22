@@ -1,4 +1,5 @@
 import pytest
+
 from py_journal_generator.journal_page import JournalPage
 
 

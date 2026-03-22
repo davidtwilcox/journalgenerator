@@ -1,8 +1,9 @@
-import pytest
 from unittest.mock import MagicMock
+
+import pytest
+
 from py_journal_generator.hex_map_journal_page import HexMapJournalPage
 from py_journal_generator.hexagon import Hexagon
-
 
 PAGE_SIZE = (148.0, 210.0)
 MARGINS = (4.5, 4.5, 4.5, 10.0)

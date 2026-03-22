@@ -1,7 +1,8 @@
-import pytest
 from unittest.mock import MagicMock
-from py_journal_generator.dot_journal_page import DotJournalPage
 
+import pytest
+
+from py_journal_generator.dot_journal_page import DotJournalPage
 
 PAGE_SIZE = (148.0, 210.0)
 MARGINS = (4.5, 4.5, 4.5, 10.0)

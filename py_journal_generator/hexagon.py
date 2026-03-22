@@ -1,6 +1,7 @@
 import math
 from typing import List, Tuple
 
+
 class Hexagon:
     def __init__(self, side_length: float):
         self.side_length: float = side_length

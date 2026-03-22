@@ -1,5 +1,7 @@
 import math
+
 import pytest
+
 from py_journal_generator.hexagon import Hexagon
 
 
