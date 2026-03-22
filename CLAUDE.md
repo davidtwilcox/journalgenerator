@@ -9,9 +9,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 pip install -e .
 ```
 
-**Run (generates test.pdf):**
+**Run:**
 ```bash
-python main.py --type <H|L|D> [--pagesize NAME] [--size FLOAT] [--width FLOAT] [--numpages INT]
+journal-generator --type <H|L|D> [--pagesize NAME] [--size FLOAT] [--width FLOAT] [--numpages INT] [--output FILENAME]
+# or
+python -m py_journal_generator --type <H|L|D> ...
 ```
 
 Run without arguments to see the full help message.
@@ -40,9 +42,9 @@ python3 -m pytest -v
 - `hexagon.Hexagon` — geometry utility: computes diagonals, apothem, and 6 vertex coordinates from a side length
 - `pdf.PDF` — thin subclass of `fpdf.FPDF` (no added behavior; exists for future extension)
 
-**Data flow:** `main.py` parses CLI args, loads `page_sizes.yaml`, creates a `PDF` sized to the chosen page, renders `--numpages` pages of the chosen type, and writes `test.pdf`.
+**Entry point:** `py_journal_generator/__main__.py` — parses CLI args, loads `page_sizes.yaml` via `importlib.resources`, creates a `PDF` sized to the chosen page, renders `--numpages` pages of the chosen type, and writes the output PDF. Registered as the `journal-generator` console script in `pyproject.toml`.
 
-**`page_sizes.yaml`** — root-level config file listing available page sizes (name, width, height in mm). Loaded at startup; `--pagesize` must match a `name` entry.
+**`page_sizes.yaml`** — bundled inside the package (`py_journal_generator/page_sizes.yaml`) and loaded via `importlib.resources`. `--pagesize` must match a `name` entry.
 
 **Key conventions:**
 - All measurements are in millimeters

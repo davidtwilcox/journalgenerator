@@ -1,7 +1,7 @@
 import argparse
 import sys
 from datetime import datetime
-from pathlib import Path
+from importlib.resources import files
 
 import yaml
 
@@ -10,12 +10,10 @@ from py_journal_generator.hex_map_journal_page import HexMapJournalPage
 from py_journal_generator.lined_journal_page import LinedJournalPage
 from py_journal_generator.pdf import PDF
 
-PAGE_SIZES_FILE = Path(__file__).parent / "page_sizes.yaml"
-
 
 def load_page_sizes() -> dict:
-    with open(PAGE_SIZES_FILE) as f:
-        data = yaml.safe_load(f)
+    text = files("py_journal_generator").joinpath("page_sizes.yaml").read_text(encoding="utf-8")
+    data = yaml.safe_load(text)
     return {entry["name"]: entry for entry in data["page_sizes"]}
 
 

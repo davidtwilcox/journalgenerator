@@ -11,11 +11,17 @@ dependencies = [
     "pyyaml",
 ]
 
+[project.scripts]
+journal-generator = "py_journal_generator.__main__:main"
+
 [project.optional-dependencies]
 dev = [
     "pytest",
     "ruff",
 ]
+
+[tool.setuptools.package-data]
+py_journal_generator = ["page_sizes.yaml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
