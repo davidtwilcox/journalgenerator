@@ -94,15 +94,17 @@ def build_parser() -> argparse.ArgumentParser:
         type=nonzero_float,
         metavar="FLOAT",
         help=(
-            "Size parameter: hex size for H (default 7.5), "
-            "line spacing for L (default 8.0), dot size for D (default 0.2)"
+            "Size parameter: line width for L (default 0.1), dot size for D (default 0.2). Ignored for H"
         ),
     )
     parser.add_argument(
         "--width",
         type=positive_float,
         metavar="FLOAT",
-        help="Width parameter: line width for L (default 0.1), dot spacing for D (default 5.0). Ignored for H",
+        help=(
+            "Width parameter: hex size for H (default 7.5), "
+            "line spacing for L (default 8.0), dot spacing for D (default 5.0)"
+        ),
     )
     parser.add_argument(
         "--numpages",
@@ -191,13 +193,13 @@ def main():
             margins = base_margins
 
         if page_type == "H":
-            page = HexMapJournalPage(page_size, margins, args.size if args.size is not None else 7.5)
+            page = HexMapJournalPage(page_size, margins, args.width if args.width is not None else 7.5)
         elif page_type == "L":
             page = LinedJournalPage(
                 page_size,
                 margins,
-                args.width if args.width is not None else 0.1,
-                args.size if args.size is not None else 8.0,
+                args.size if args.size is not None else 0.1,
+                args.width if args.width is not None else 8.0,
             )
         else:
             page = DotJournalPage(

@@ -39,16 +39,16 @@ Run without arguments to display this parameter reference.
 
 | Type | Default | Description |
 |---|---|---|
-| `H` | `7.5` | Hex size (mm) |
-| `L` | `8.0` | Line spacing (mm) |
+| `H` | — | Ignored |
+| `L` | `0.1` | Line width (mm) |
 | `D` | `0.2` | Dot size (mm) |
 
 ### --width defaults by type
 
 | Type | Default | Description |
 |---|---|---|
-| `H` | — | Ignored |
-| `L` | `0.1` | Line width (mm) |
+| `H` | `7.5` | Hex size (mm) |
+| `L` | `8.0` | Line spacing (mm) |
 | `D` | `5.0` | Dot spacing (mm) |
 
 ### --margins

@@ -16,26 +16,13 @@ def page():
 
 
 @pytest.fixture
-def page_with_labels():
-    return HexMapJournalPage(PAGE_SIZE, MARGINS, HEX_SIZE, has_labels=True)
-
-
-@pytest.fixture
 def pdf():
-    mock = MagicMock()
-    mock.get_string_width.return_value = 5.0
-    return mock
+    return MagicMock()
 
 
 class TestHexMapJournalPageInit:
     def test_hex_size(self, page):
         assert page.hex_size == pytest.approx(HEX_SIZE)
-
-    def test_has_labels_defaults_false(self, page):
-        assert page.has_labels is False
-
-    def test_has_labels_true(self, page_with_labels):
-        assert page_with_labels.has_labels is True
 
 
 class TestHexMapJournalPageRender:
@@ -62,10 +49,6 @@ class TestHexMapJournalPageRender:
         expected_cols = int(page.content_width / hexagon.short_diagonal) - 1
         assert pdf.polygon.call_count == expected_rows * expected_cols
 
-    def test_no_cell_calls_without_labels(self, page, pdf):
+    def test_no_cell_calls(self, page, pdf):
         page.render(pdf)
         pdf.cell.assert_not_called()
-
-    def test_cell_calls_with_labels(self, page_with_labels, pdf):
-        page_with_labels.render(pdf)
-        assert pdf.cell.call_count > 0
