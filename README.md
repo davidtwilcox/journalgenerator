@@ -29,7 +29,7 @@ Run without arguments to display this parameter reference.
 | `--type` | Yes | | Page type: `H` (hex map), `L` (lined), `D` (dot grid). Case-insensitive. |
 | `--pagesize` | No | `A5` | Page size name. See available sizes below. |
 | `--size` | No | See below | Size value whose meaning depends on page type. |
-| `--width` | No | See below | Width value whose meaning depends on page type. Ignored for `H`. |
+| `--width` | No | See below | Width value whose meaning depends on page type. |
 | `--numpages` | No | `1` | Number of pages to generate. Must be a positive integer. |
 | `--output` | No | `journal-YYYYmmddHHMMSS.pdf` | Output filename. `.pdf` extension is added automatically if omitted. |
 | `--margins` | No | See below | Page margins in mm as 2 or 4 comma-separated positive values. |
@@ -47,7 +47,7 @@ Run without arguments to display this parameter reference.
 
 | Type | Default | Description |
 |---|---|---|
-| `H` | `7.5` | Hex size (mm) |
+| `H` | `10.0` | Hex size (mm) |
 | `L` | `8.0` | Line spacing (mm) |
 | `D` | `5.0` | Dot spacing (mm) |
 
@@ -93,7 +93,7 @@ journal-generator --type L --pagesize A4 --numpages 10 --output my-journal
 journal-generator --type D --pagesize letter --size 0.3 --width 6
 
 # A5 hex map with larger hexagons
-journal-generator --type H --size 10
+journal-generator --type H --width 12
 
 # 20-page lined journal with mirrored margins for binding
 journal-generator --type L --numpages 20 --margins "4.5,4.5,4.5,10" --mirror true
