@@ -7,7 +7,7 @@ from py_journal_generator.hexagon import Hexagon
 
 PAGE_SIZE = (148.0, 210.0)
 MARGINS = (4.5, 4.5, 4.5, 10.0)
-HEX_SIZE = 7.5
+HEX_SIZE = 10.0
 
 
 @pytest.fixture

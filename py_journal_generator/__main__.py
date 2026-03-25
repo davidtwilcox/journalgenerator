@@ -68,7 +68,7 @@ def parse_margins(value: str) -> tuple:
             raise argparse.ArgumentTypeError(f"All margin values must be positive (got {f}).")
     if len(floats) == 2:
         top_bottom, left_right = floats
-        return (top_bottom, left_right, top_bottom, left_right)  # top, right, bottom, left
+        return top_bottom, left_right, top_bottom, left_right  # top, right, bottom, left
     return tuple(floats)  # top, right, bottom, left
 
 
@@ -102,7 +102,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=positive_float,
         metavar="FLOAT",
         help=(
-            "Width parameter: hex size for H (default 7.5), "
+            "Width parameter: hex size for H (default 10.0), "
             "line spacing for L (default 8.0), dot spacing for D (default 5.0)"
         ),
     )
@@ -193,7 +193,7 @@ def main():
             margins = base_margins
 
         if page_type == "H":
-            page = HexMapJournalPage(page_size, margins, args.width if args.width is not None else 7.5)
+            page = HexMapJournalPage(page_size, margins, args.width if args.width is not None else 10.0)
         elif page_type == "L":
             page = LinedJournalPage(
                 page_size,

@@ -4,11 +4,11 @@ from typing import List, Tuple
 
 class Hexagon:
     def __init__(self, width: float):
-        self.side_length: float = width
-        self.short_diagonal: float = math.sqrt(3) * width
-        self.long_diagonal: float = width * 2.0
-        self.apothem: float = self.short_diagonal / 2.0
-        self.three_quarter_height: float = width + (width / 2.0)
+        self.side_length: float = (2 / math.sqrt(3)) * (width / 2.0)
+        self.short_diagonal: float = width
+        self.long_diagonal: float = self.side_length * 2.0
+        self.apothem: float = width / 2.0
+        self.three_quarter_height: float = self.side_length + (self.side_length / 2.0)
 
     def get_coords(self, top_left: Tuple[float, float]) -> List[Tuple[float, float]]:
         half_length: float = self.side_length / 2.0

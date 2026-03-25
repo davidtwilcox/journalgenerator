@@ -12,16 +12,16 @@ def hex10():
 
 class TestHexagonDimensions:
     def test_short_diagonal(self, hex10):
-        assert hex10.short_diagonal == pytest.approx(math.sqrt(3) * 10.0)
+        assert hex10.short_diagonal == pytest.approx(10.0)
 
     def test_long_diagonal(self, hex10):
-        assert hex10.long_diagonal == pytest.approx(20.0)
+        assert hex10.long_diagonal == pytest.approx(20.0 / math.sqrt(3))
 
     def test_apothem(self, hex10):
         assert hex10.apothem == pytest.approx(hex10.short_diagonal / 2.0)
 
     def test_three_quarter_height(self, hex10):
-        assert hex10.three_quarter_height == pytest.approx(15.0)
+        assert hex10.three_quarter_height == pytest.approx(5.0 * math.sqrt(3))
 
 
 class TestHexagonCoords:
