@@ -9,12 +9,15 @@ class HexMapJournalPage(JournalPage):
     def __init__(self,
                  page_size: Tuple[float, float],
                  margins: Tuple[float, float, float, float],
-                 hex_size: float):
+                 hex_size: float,
+                 line_width: float):
         super().__init__(page_size, margins)
         self.hex_size: float = hex_size
+        self.line_width: float = line_width
 
     def render(self, pdf: PDF):
         pdf.add_page()
+        pdf.set_line_width(self.line_width)
         hexagon: Hexagon = Hexagon(self.hex_size)
         rows: int = \
             int((self.content_height - hexagon.three_quarter_height) / hexagon.three_quarter_height)

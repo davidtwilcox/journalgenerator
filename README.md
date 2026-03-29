@@ -37,11 +37,11 @@ Run without arguments to display this parameter reference.
 
 ### --size defaults by type
 
-| Type | Default | Description |
-|---|---|---|
-| `H` | — | Ignored |
-| `L` | `0.1` | Line width (mm) |
-| `D` | `0.2` | Dot size (mm) |
+| Type | Default | Description     |
+|---|---------|-----------------|
+| `H` | `0.1`   | Line width (mm) |
+| `L` | `0.1`   | Line width (mm) |
+| `D` | `0.2`   | Dot size (mm)   |
 
 ### --width defaults by type
 

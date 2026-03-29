@@ -8,11 +8,12 @@ from py_journal_generator.hexagon import Hexagon
 PAGE_SIZE = (148.0, 210.0)
 MARGINS = (4.5, 4.5, 4.5, 10.0)
 HEX_SIZE = 10.0
+HEX_WIDTH = 0.1
 
 
 @pytest.fixture
 def page():
-    return HexMapJournalPage(PAGE_SIZE, MARGINS, HEX_SIZE)
+    return HexMapJournalPage(PAGE_SIZE, MARGINS, HEX_SIZE, HEX_WIDTH)
 
 
 @pytest.fixture
