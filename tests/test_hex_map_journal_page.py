@@ -85,8 +85,8 @@ class TestHexMapJournalPageRotatedRender:
     def test_expected_polygon_count(self, page_rotated, pdf):
         page_rotated.render(pdf)
         hexagon = Hexagon(HEX_SIZE, rotated=True)
-        expected_rows = int((page_rotated.content_height - hexagon.width) / hexagon.width)
-        expected_cols = int(page_rotated.content_width / hexagon.three_quarter_height) - 1
+        expected_rows = int(page_rotated.content_height / hexagon.apothem) - 1
+        expected_cols = int(page_rotated.content_width / (hexagon.three_quarter_height * 2.0))
         assert pdf.polygon.call_count == expected_rows * expected_cols
 
     def test_no_cell_calls(self, page_rotated, pdf):

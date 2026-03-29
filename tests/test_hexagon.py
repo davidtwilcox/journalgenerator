@@ -100,17 +100,15 @@ class TestHexagonRotatedCoords:
         assert coords[1][1] == pytest.approx(top_left[1])
         assert coords[2][1] == pytest.approx(top_left[1])
 
-    def test_width_equals_two_apothems_plus_side_length(self, hex10_rotated):
+    def test_width_equals_long_diagonal(self, hex10_rotated):
         coords = hex10_rotated.get_coords((0.0, 0.0))
         xs = [p[0] for p in coords]
-        expected = 2 * hex10_rotated.apothem + hex10_rotated.side_length
-        assert max(xs) - min(xs) == pytest.approx(expected)
+        assert max(xs) - min(xs) == pytest.approx(hex10_rotated.long_diagonal)
 
-    def test_height_equals_half_length_plus_apothem(self, hex10_rotated):
+    def test_height_equals_short_diagonal(self, hex10_rotated):
         coords = hex10_rotated.get_coords((0.0, 0.0))
         ys = [p[1] for p in coords]
-        expected = hex10_rotated.side_length / 2.0 + hex10_rotated.apothem
-        assert max(ys) - min(ys) == pytest.approx(expected)
+        assert max(ys) - min(ys) == pytest.approx(hex10_rotated.short_diagonal)
 
     def test_offset_shifts_all_vertices(self, hex10_rotated):
         base = hex10_rotated.get_coords((0.0, 0.0))
