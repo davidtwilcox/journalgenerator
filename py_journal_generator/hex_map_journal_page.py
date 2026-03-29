@@ -10,18 +10,28 @@ class HexMapJournalPage(JournalPage):
                  page_size: Tuple[float, float],
                  margins: Tuple[float, float, float, float],
                  hex_size: float,
-                 line_width: float):
+                 line_width: float,
+                 rotated: bool = False) -> None:
         super().__init__(page_size, margins)
         self.hex_size: float = hex_size
         self.line_width: float = line_width
+        self.rotated: bool = rotated
 
     def render(self, pdf: PDF):
         pdf.add_page()
         pdf.set_line_width(self.line_width)
-        hexagon: Hexagon = Hexagon(self.hex_size)
-        rows: int = \
-            int((self.content_height - hexagon.three_quarter_height) / hexagon.three_quarter_height)
-        cols: int = int(self.content_width / hexagon.short_diagonal) - 1
+        hexagon: Hexagon = Hexagon(self.hex_size, self.rotated)
+        rows: int = 0
+        cols: int = 0
+        if self.rotated:
+            rows = int((self.content_height - hexagon.width) / hexagon.width)
+        else:
+            rows = \
+                int((self.content_height - hexagon.three_quarter_height) / hexagon.three_quarter_height)
+        if self.rotated:
+            cols = int(self.content_width / hexagon.three_quarter_height) - 1
+        else:
+            cols = int(self.content_width / hexagon.width) - 1
         x_offset: float = self.left_margin
         for r in range(0, rows):
             indent: float = 0.0 if r % 2 == 0 else hexagon.apothem

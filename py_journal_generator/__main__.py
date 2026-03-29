@@ -138,6 +138,13 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="BOOL",
         help="Swap left and right margins on odd-numbered pages (true/false). Default: false",
     )
+    parser.add_argument(
+        "--rotated",
+        type=parse_bool,
+        default=False,
+        metavar="BOOL",
+        help="Rotate hex map 90 degrees (true/false). Only applies to H type. Default: false",
+    )
     return parser
 
 
@@ -198,6 +205,7 @@ def main():
                 margins,
                 args.width if args.width is not None else 10.0,
                 args.size if args.size is not None else 0.1,
+                args.rotated,
             )
         elif page_type == "L":
             page = LinedJournalPage(
