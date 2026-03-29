@@ -8,7 +8,17 @@ Generates journal pages as PDF documents.
 pip install -e .
 ```
 
-## Usage
+## Web App
+
+A browser-based UI is available in `web/app.py`. It requires [uv](https://docs.astral.sh/uv/).
+
+```bash
+uv run web/app.py
+```
+
+Then open `http://127.0.0.1:8000` in your browser. All parameters are available from the UI. Parameters that do not apply to the selected page type are hidden automatically. The generated PDF is downloaded directly to your browser.
+
+## CLI Usage
 
 ```bash
 journal-generator --type <TYPE> [options]
