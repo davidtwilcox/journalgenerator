@@ -51,6 +51,7 @@ python3 -m pytest -v
 - All measurements are in millimeters
 - Margins are `(top, right, bottom, left)` = `(4.5, 4.5, 4.5, 10.0)` — 10mm binding margin on the left
 - Content area origin is margin-offset from the PDF page corner; pages handle their own coordinate math
-- `Hexagon` takes `width` (the short diagonal / flat-top horizontal span); side length is derived as `(2/√3) * (width/2)`
-- Flat-top hex rows alternate with a half-hex (`apothem`) horizontal offset for tessellation; rotated (pointy-top) rows alternate with a `three_quarter_height` offset
-- `--rotated` and `--size` only apply to type `H`; `--rotated` is ignored by `L`, `D`, and `S`
+- `Hexagon` takes `width` (the short diagonal); side length is derived as `(2/√3) * (width/2)`
+- Default hex orientation is pointy-top; `--rotated true` produces flat-top orientation
+- Pointy-top rows alternate with an `apothem` horizontal offset; flat-top rows alternate with a `three_quarter_height` offset
+- `--rotated` and `--size` only apply to type `H`; ignored by `L`, `D`, and `S`

@@ -34,7 +34,7 @@ Run without arguments to display this parameter reference.
 | `--output` | No | `journal-YYYYmmddHHMMSS.pdf` | Output filename. `.pdf` extension is added automatically if omitted. |
 | `--margins` | No | See below | Page margins in mm as 2 or 4 comma-separated positive values. |
 | `--mirror` | No | `false` | Swap left and right margins on odd-numbered pages (`true`/`false`). |
-| `--rotated` | No | `false` | Rotate hex map 90 degrees (`true`/`false`). Only applies to `H` type. |
+| `--rotated` | No | `false` | Use flat-top hexagon orientation (`true`/`false`). Default is pointy-top. Only applies to `H` type. |
 
 ### --size defaults by type
 

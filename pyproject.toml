@@ -20,6 +20,9 @@ dev = [
     "ruff",
 ]
 
+[tool.setuptools.packages.find]
+exclude = ["web*"]
+
 [tool.setuptools.package-data]
 py_journal_generator = ["page_sizes.yaml"]
 
