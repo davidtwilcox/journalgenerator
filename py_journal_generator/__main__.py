@@ -9,6 +9,7 @@ from py_journal_generator.dot_journal_page import DotJournalPage
 from py_journal_generator.hex_map_journal_page import HexMapJournalPage
 from py_journal_generator.lined_journal_page import LinedJournalPage
 from py_journal_generator.pdf import PDF
+from py_journal_generator.square_journal_page import SquareJournalPage
 
 
 def load_page_sizes() -> dict:
@@ -87,14 +88,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--type",
         default=None,
         metavar="TYPE",
-        help="Page type: H=Hex map, L=Lined, D=Dot grid (case-insensitive, required)",
+        help="Page type: H=Hex map, L=Lined, D=Dot grid, S=Square grid (case-insensitive, required)",
     )
     parser.add_argument(
         "--size",
         type=nonzero_float,
         metavar="FLOAT",
         help=(
-            "Size parameter: line width for L and H (default 0.1), dot size for D (default 0.2)"
+            "Size parameter: line width for L, H, and S (default 0.1), dot size for D (default 0.2)"
         ),
     )
     parser.add_argument(
@@ -103,7 +104,7 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="FLOAT",
         help=(
             "Width parameter: hex size for H (default 10.0), "
-            "line spacing for L (default 8.0), dot spacing for D (default 5.0)"
+            "line spacing for L (default 8.0), dot spacing for D (default 5.0), square size for S (default 5.0)"
         ),
     )
     parser.add_argument(
@@ -168,8 +169,8 @@ def main():
         sys.exit(1)
 
     page_type = args.type.upper()
-    if page_type not in ("H", "L", "D"):
-        print(f"Error: --type must be H, L, or D (got '{args.type}').")
+    if page_type not in ("H", "L", "D", "S"):
+        print(f"Error: --type must be H, L, D, or S (got '{args.type}').")
         sys.exit(1)
 
     if args.output is not None and args.output.strip() == "":
@@ -213,6 +214,13 @@ def main():
                 margins,
                 args.size if args.size is not None else 0.1,
                 args.width if args.width is not None else 8.0,
+            )
+        elif page_type == "S":
+            page = SquareJournalPage(
+                page_size,
+                margins,
+                args.size if args.size is not None else 0.1,
+                args.width if args.width is not None else 5.0,
             )
         else:
             page = DotJournalPage(

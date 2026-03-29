@@ -26,7 +26,7 @@ Run without arguments to display this parameter reference.
 
 | Parameter | Required | Default | Description |
 |---|---|---|---|
-| `--type` | Yes | | Page type: `H` (hex map), `L` (lined), `D` (dot grid). Case-insensitive. |
+| `--type` | Yes | | Page type: `H` (hex map), `L` (lined), `D` (dot grid), `S` (square grid). Case-insensitive. |
 | `--pagesize` | No | `A5` | Page size name. See available sizes below. |
 | `--size` | No | See below | Size value whose meaning depends on page type. |
 | `--width` | No | See below | Width value whose meaning depends on page type. |
@@ -43,6 +43,7 @@ Run without arguments to display this parameter reference.
 | `H` | `0.1`   | Line width (mm) |
 | `L` | `0.1`   | Line width (mm) |
 | `D` | `0.2`   | Dot size (mm)   |
+| `S` | `0.1`   | Line width (mm) |
 
 ### --width defaults by type
 
@@ -51,6 +52,7 @@ Run without arguments to display this parameter reference.
 | `H` | `10.0` | Hex size (mm) |
 | `L` | `8.0` | Line spacing (mm) |
 | `D` | `5.0` | Dot spacing (mm) |
+| `S` | `5.0` | Square size (mm) |
 
 ### --margins
 
@@ -98,6 +100,9 @@ journal-generator --type H --width 12
 
 # A5 rotated hex map
 journal-generator --type H --rotated true
+
+# A5 square grid
+journal-generator --type S
 
 # 20-page lined journal with mirrored margins for binding
 journal-generator --type L --numpages 20 --margins "4.5,4.5,4.5,10" --mirror true
