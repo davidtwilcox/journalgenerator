@@ -34,6 +34,7 @@ Run without arguments to display this parameter reference.
 | `--output` | No | `journal-YYYYmmddHHMMSS.pdf` | Output filename. `.pdf` extension is added automatically if omitted. |
 | `--margins` | No | See below | Page margins in mm as 2 or 4 comma-separated positive values. |
 | `--mirror` | No | `false` | Swap left and right margins on odd-numbered pages (`true`/`false`). |
+| `--rotated` | No | `false` | Rotate hex map 90 degrees (`true`/`false`). Only applies to `H` type. |
 
 ### --size defaults by type
 
@@ -94,6 +95,9 @@ journal-generator --type D --pagesize letter --size 0.3 --width 6
 
 # A5 hex map with larger hexagons
 journal-generator --type H --width 12
+
+# A5 rotated hex map
+journal-generator --type H --rotated true
 
 # 20-page lined journal with mirrored margins for binding
 journal-generator --type L --numpages 20 --margins "4.5,4.5,4.5,10" --mirror true
