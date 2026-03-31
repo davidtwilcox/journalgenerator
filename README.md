@@ -84,12 +84,15 @@ When `--mirror true` is set, the provided margins apply to odd-numbered pages. E
 | `A4` | 210 | 297 |
 | `A5` | 148 | 210 |
 | `A6` | 105 | 148 |
+| `A7` | 74 | 105 |
 | `B4` | 250 | 353 |
 | `B5` | 176 | 250 |
 | `B6` | 125 | 176 |
+| `B7` | 88 | 125 |
 | `letter` | 216 | 279 |
 | `halfletter` | 140 | 216 |
 | `legal` | 216 | 356 |
+| `tabloid` | 279 | 432 |
 
 Page sizes are defined in `py_journal_generator/page_sizes.yaml`.
 

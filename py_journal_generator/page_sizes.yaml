@@ -8,6 +8,9 @@ page_sizes:
     - name: A6
       width: 105
       height: 148
+    - name: A7
+      width: 74
+      height: 105
     - name: B4
       width: 250
       height: 353
@@ -17,6 +20,9 @@ page_sizes:
     - name: B6
       width: 125
       height: 176
+    - name: B7
+      width: 88
+      height: 125
     - name: letter
       width: 216
       height: 279
@@ -26,3 +32,6 @@ page_sizes:
     - name: legal
       width: 216
       height: 356
+    - name: tabloid
+      width: 279
+      height: 432
